@@ -36,7 +36,10 @@ func InitDB() (*gorm.DB, error) {
 	sqlDB.SetMaxIdleConns(5)
 	sqlDB.SetConnMaxLifetime(time.Hour)
 
-	if err := db.AutoMigrate(&model.Todo{}); err != nil {
+	if err := db.AutoMigrate(
+		&model.Todo{},
+		&model.Category{},
+	); err != nil {
 		return nil, fmt.Errorf("failed to run migrations: %v", err)
 	}
 

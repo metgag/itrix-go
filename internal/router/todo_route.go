@@ -14,5 +14,7 @@ func InitTodoRoute(r *gin.Engine, db *gorm.DB) {
 	todoGroup := r.Group("api/v1/todos")
 	{
 		todoGroup.POST("", handler.HandleCreatePost)
+		todoGroup.DELETE("/:id", handler.HandleDeleteTodo)
+		todoGroup.PATCH("/:id", handler.HandleUpdateTodo)
 	}
 }
